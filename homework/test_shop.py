@@ -10,9 +10,11 @@ from homework.models import Product, Cart
 def product():
     return Product("book", 100, "This is a book", 1000)
 
+
 @pytest.fixture
 def product_1():
     return Product("notebook", 30, "This is a notebook", 50)
+
 
 @pytest.fixture
 def cart():
@@ -38,7 +40,6 @@ class TestProducts:
             product.buy(1001)
 
 
-
 class TestCart:
     """
     TODO Напишите тесты на методы класса Cart
@@ -46,6 +47,7 @@ class TestCart:
         На некоторые методы у вас может быть несколько тестов.
         Например, негативные тесты, ожидающие ошибку (используйте pytest.raises, чтобы проверить это)
     """
+
     def test_cart_add_product(self, cart, product):
         cart.add_product(product)
         assert cart.products[product] == 1
@@ -55,7 +57,7 @@ class TestCart:
 
     def test_cart_remove_one_product(self, cart, product):
         cart.add_product(product, buy_count=2)
-        cart.remove_product(product,remove_count=1)
+        cart.remove_product(product, remove_count=1)
         assert cart.products[product] == 1
 
     def test_cart_remove_some_products(self, cart, product):

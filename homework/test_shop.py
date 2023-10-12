@@ -26,9 +26,9 @@ class TestProducts:
         assert product.check_quantity(900)
 
     def test_product_buy_more_than_available(self, product):
-        # TODO напишите проверки на метод buy,
-        #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
-        pass
+        with pytest.raises(ValueError):
+            product.buy(1001)
+
 
 
 class TestCart:

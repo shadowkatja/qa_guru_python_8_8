@@ -29,7 +29,7 @@ class Product:
             Проверьте количество продукта используя метод check_quantity
             Если продуктов не хватает, то выбросите исключение ValueError
         """
-        if self.check_quantity:
+        if self.check_quantity(quantity):
             self.quantity -= quantity
         else:
             raise ValueError

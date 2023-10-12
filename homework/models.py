@@ -88,4 +88,7 @@ class Cart:
         Учтите, что товаров может не хватать на складе.
         В этом случае нужно выбросить исключение ValueError
         """
-        raise NotImplementedError
+        for product in self.products:
+            for product, quantity in self.products.items():
+                product.buy(quantity)
+        self.clear()

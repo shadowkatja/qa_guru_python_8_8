@@ -67,7 +67,7 @@ class Cart:
         Если remove_count не передан, то удаляется вся позиция
         Если remove_count больше, чем количество продуктов в позиции, то удаляется вся позиция
         """
-        if self.products[product] <= remove_count or remove_count is None:
+        if remove_count is None or remove_count >= self.products[product]:
             del self.products[product]
         else:
             self.products[product] -= remove_count
@@ -79,7 +79,7 @@ class Cart:
     def get_total_price(self) -> float:
         total_price = 0.0
         for product in self.products:
-            total_price = Product.price * self.products[product]
+            total_price += product.price * self.products[product]
         return total_price
 
     def buy(self):
@@ -88,7 +88,6 @@ class Cart:
         Учтите, что товаров может не хватать на складе.
         В этом случае нужно выбросить исключение ValueError
         """
-        for product in self.products:
-            for product, quantity in self.products.items():
-                product.buy(quantity)
+        for product, quantity in self.products.items():
+            product.buy(quantity)
         self.clear()
